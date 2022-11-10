@@ -1,33 +1,61 @@
 import java.awt.*;
 
-public class Car {
+public abstract class Car {
 
     // Shared Attributes
-    public int nrDoors; // Number of doors on the car
-    public double enginePower; // Engine power of the car
-    public double currentSpeed; // The current speed of the car
-    public Color color; // Color of the car
-    public String modelName; // The car model name
+    private int nrDoors; // Number of doors on the car
+    private double enginePower; // Engine power of the car
+    private double currentSpeed; // The current speed of the car
+    private Color color; // Color of the car
+    private String modelName; // The car model name
 
-    public int getNrDoors(){
+
+    // GETTERS AND SETTERS
+    public int getNrDoors() {
         return nrDoors;
     }
-    public double getEnginePower(){
+
+    public void setNrDoors(int nrDoors) {
+        this.nrDoors = nrDoors;
+    }
+
+    public double getEnginePower() {
         return enginePower;
     }
 
-    public double getCurrentSpeed(){
+    public void setEnginePower(double enginePower) {
+        this.enginePower = enginePower;
+    }
+
+    public double getCurrentSpeed() {
         return currentSpeed;
     }
 
-    public Color getColor(){
+    public void setCurrentSpeed(double currentSpeed) {
+        this.currentSpeed = currentSpeed;
+    }
+
+    public Color getColor() {
         return color;
     }
 
-    public void setColor(Color clr){
-	    color = clr;
+    public void setColor(Color color) {
+        this.color = color;
     }
 
+    public String getModelName() {
+        return modelName;
+    }
+
+    public void setModelName(String modelName) {
+        this.modelName = modelName;
+    }
+
+
+
+
+
+    // METHODS
     public void startEngine(){
 	    currentSpeed = 0.1;
     }
@@ -35,4 +63,15 @@ public class Car {
     public void stopEngine(){
 	    currentSpeed = 0;
     }
+
+
+    // Abstract methods
+    abstract public double speedFactor();
+
+    abstract public void incrementSpeed(double amount);
+
+    abstract public void decrementSpeed(double amount);
+
+
+
 }
