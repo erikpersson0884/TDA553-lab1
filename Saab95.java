@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class Saab95 extends Car implements Movable{
+public class Saab95 extends Car{
 
     public boolean turboOn;
 
@@ -48,24 +48,6 @@ public class Saab95 extends Car implements Movable{
     public void brake(double amount){
         decrementSpeed(amount);
     }
-
-
-    // Implementation of Movable
-
-    public void move() {
-        ;
-    }
-
-    public void turnLeft() {
-        ;
-    }
-
-    public void turnRight() {
-        ;
-    }
-
-
-
 
 
 }

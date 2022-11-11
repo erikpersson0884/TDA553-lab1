@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class Volvo240 extends Car implements Movable{
+public class Volvo240 extends Car{
 
     public final static double trimFactor = 1.25;
     
@@ -37,50 +37,6 @@ public class Volvo240 extends Car implements Movable{
     public void brake(double amount){
         decrementSpeed(amount);
     }
-
-
-
-    // Implementation of Movable
-
-    public void move() {
-        
-        // Get direction as point (dx, dy)
-        Point direction = getDirectionArray()[getDirectionIndex()];
-        int dx = (int)direction.getX();
-        int dy = (int)direction.getY();
-
-        // Calculate new coordinates
-        int newX = dx * (int)getCurrentSpeed();
-        int newY = dy * (int)getCurrentSpeed();
-
-        // Set coordinates
-        setX(newX);
-        setY(newY);
-
-    }
-
-    public void turnLeft() {
-
-        if (getDirectionIndex() == 0) {
-            setDirectionIndex(getDirectionArray().length - 1);
-        }
-        else {
-            setDirectionIndex(getDirectionIndex() - 1);
-        }
-
-    }
-
-    public void turnRight() {
-
-        if (getDirectionIndex() == getDirectionArray().length - 1) {
-            setDirectionIndex(0);
-        }
-        else {
-            setDirectionIndex(getDirectionIndex() + 1);
-        }
-        
-    }
-
 
 
 }
