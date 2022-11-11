@@ -43,16 +43,31 @@ public class Volvo240 extends Car implements Movable{
     // Implementation of Movable
 
     public void move() {
-        ;
+        
+        // Get direction as point (dx, dy)
+        Point direction = getDirectionArray()[getDirectionIndex()];
+        int dx = (int)direction.getX();
+        int dy = (int)direction.getY();
+
+        // Calculate new coordinates
+        int newX = dx * (int)getCurrentSpeed();
+        int newY = dy * (int)getCurrentSpeed();
+
+        // Set coordinates
+        setX(newX);
+        setY(newY);
+
     }
 
     public void turnLeft() {
+
         if (getDirectionIndex() == 0) {
             setDirectionIndex(getDirectionArray().length - 1);
         }
         else {
             setDirectionIndex(getDirectionIndex() - 1);
         }
+
     }
 
     public void turnRight() {
@@ -64,8 +79,6 @@ public class Volvo240 extends Car implements Movable{
             setDirectionIndex(getDirectionIndex() + 1);
         }
         
-
-
     }
 
 

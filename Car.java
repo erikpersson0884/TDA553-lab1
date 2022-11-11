@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public abstract class Car {
+public abstract class Car implements Movable {
 
     // Shared Attributes
     private int nrDoors; // Number of doors on the car
@@ -9,66 +9,143 @@ public abstract class Car {
     private Color color; // Color of the car
     private String modelName; // The car model name
 
+    // Coordinates
+    private int x, y;
+
+    // Moving
+    private Point[] directions = new Point[]{new Point(0,1), new Point(1,0), new Point(0,-1), new Point(-1,0)};
+    private int directionIndex;
+    
+
 
     // GETTERS AND SETTERS
-    protected int getNrDoors() {
+    public int getNrDoors() {
         return nrDoors;
     }
 
-    protected void setNrDoors(int nrDoors) {
+    public void setNrDoors(int nrDoors) {
         this.nrDoors = nrDoors;
     }
 
-    protected double getEnginePower() {
+    public double getEnginePower() {
         return enginePower;
     }
 
-    protected void setEnginePower(double enginePower) {
+    public void setEnginePower(double enginePower) {
         this.enginePower = enginePower;
     }
 
-    protected double getCurrentSpeed() {
+    public double getCurrentSpeed() {
         return currentSpeed;
     }
 
-    protected void setCurrentSpeed(double currentSpeed) {
+    public void setCurrentSpeed(double currentSpeed) {
         this.currentSpeed = currentSpeed;
     }
 
-    protected Color getColor() {
+    public Color getColor() {
         return color;
     }
 
-    protected void setColor(Color color) {
+    public void setColor(Color color) {
         this.color = color;
     }
 
-    protected String getModelName() {
+    public String getModelName() {
         return modelName;
     }
 
-    protected void setModelName(String modelName) {
+    public void setModelName(String modelName) {
         this.modelName = modelName;
     }
 
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public int getDirectionIndex() {
+        return directionIndex;
+    }
+
+    public void setDirectionIndex(int directionIndex) {
+        this.directionIndex = directionIndex;
+    }
+
+    public Point[] getDirectionArray() {
+        return directions;
+    }
 
     // METHODS
-    protected void startEngine(){
+    public void startEngine(){
 	    currentSpeed = 0.1;
     }
 
-    protected void stopEngine(){
+    public void stopEngine(){
 	    currentSpeed = 0;
     }
 
 
     // Abstract methods
-    abstract protected double speedFactor();
+    abstract public double speedFactor();
 
-    abstract protected void incrementSpeed(double amount);
+    abstract public void incrementSpeed(double amount);
 
-    abstract protected void decrementSpeed(double amount);
+    abstract public void decrementSpeed(double amount);
 
+
+
+   // Implementation of Movable
+
+   public void move() {
+        
+    // Get direction as point (dx, dy)
+    Point direction = getDirectionArray()[getDirectionIndex()];
+    int dx = (int)direction.getX();
+    int dy = (int)direction.getY();
+
+    // Calculate new coordinates
+    int newX = dx * (int)getCurrentSpeed();
+    int newY = dy * (int)getCurrentSpeed();
+
+    // Set coordinates
+    setX(newX);
+    setY(newY);
+
+}
+
+public void turnLeft() {
+
+    if (getDirectionIndex() == 0) {
+        setDirectionIndex(getDirectionArray().length - 1);
+    }
+    else {
+        setDirectionIndex(getDirectionIndex() - 1);
+    }
+
+}
+
+public void turnRight() {
+
+    if (getDirectionIndex() == getDirectionArray().length - 1) {
+        setDirectionIndex(0);
+    }
+    else {
+        setDirectionIndex(getDirectionIndex() + 1);
+    }
+    
+}
 
 
 }

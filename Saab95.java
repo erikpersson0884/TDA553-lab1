@@ -1,17 +1,19 @@
 import java.awt.*;
 
-public class Saab95 extends Car{
+public class Saab95 extends Car implements Movable{
 
-    // Specific attributes
-    private boolean turboOn;
+    public boolean turboOn;
 
     public Saab95(){
         setNrDoors(2);
         setColor(Color.red);
         setEnginePower(125);
         setModelName("Saab95");
+        setDirectionIndex(0);
         turboOn = false;
         stopEngine();
+        setX(0);
+        setY(0);
     }
 
 
@@ -37,8 +39,6 @@ public class Saab95 extends Car{
         setCurrentSpeed(getCurrentSpeed() - speedFactor() * amount);
     }
     
-
-
     // TODO fix this method according to lab pm
     public void gas(double amount){
         incrementSpeed(amount);
@@ -48,4 +48,24 @@ public class Saab95 extends Car{
     public void brake(double amount){
         decrementSpeed(amount);
     }
+
+
+    // Implementation of Movable
+
+    public void move() {
+        ;
+    }
+
+    public void turnLeft() {
+        ;
+    }
+
+    public void turnRight() {
+        ;
+    }
+
+
+
+
+
 }
