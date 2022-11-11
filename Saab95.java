@@ -2,7 +2,8 @@ import java.awt.*;
 
 public class Saab95 extends Car{
 
-    public boolean turboOn;
+    // Specific attributes
+    private boolean turboOn;
 
     public Saab95(){
         setNrDoors(2);
@@ -36,6 +37,8 @@ public class Saab95 extends Car{
         setCurrentSpeed(getCurrentSpeed() - speedFactor() * amount);
     }
     
+
+
     // TODO fix this method according to lab pm
     public void gas(double amount){
         incrementSpeed(amount);

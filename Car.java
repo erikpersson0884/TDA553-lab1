@@ -11,66 +11,63 @@ public abstract class Car {
 
 
     // GETTERS AND SETTERS
-    public int getNrDoors() {
+    protected int getNrDoors() {
         return nrDoors;
     }
 
-    public void setNrDoors(int nrDoors) {
+    protected void setNrDoors(int nrDoors) {
         this.nrDoors = nrDoors;
     }
 
-    public double getEnginePower() {
+    protected double getEnginePower() {
         return enginePower;
     }
 
-    public void setEnginePower(double enginePower) {
+    protected void setEnginePower(double enginePower) {
         this.enginePower = enginePower;
     }
 
-    public double getCurrentSpeed() {
+    protected double getCurrentSpeed() {
         return currentSpeed;
     }
 
-    public void setCurrentSpeed(double currentSpeed) {
+    protected void setCurrentSpeed(double currentSpeed) {
         this.currentSpeed = currentSpeed;
     }
 
-    public Color getColor() {
+    protected Color getColor() {
         return color;
     }
 
-    public void setColor(Color color) {
+    protected void setColor(Color color) {
         this.color = color;
     }
 
-    public String getModelName() {
+    protected String getModelName() {
         return modelName;
     }
 
-    public void setModelName(String modelName) {
+    protected void setModelName(String modelName) {
         this.modelName = modelName;
     }
 
 
-
-
-
     // METHODS
-    public void startEngine(){
+    protected void startEngine(){
 	    currentSpeed = 0.1;
     }
 
-    public void stopEngine(){
+    protected void stopEngine(){
 	    currentSpeed = 0;
     }
 
 
     // Abstract methods
-    abstract public double speedFactor();
+    abstract protected double speedFactor();
 
-    abstract public void incrementSpeed(double amount);
+    abstract protected void incrementSpeed(double amount);
 
-    abstract public void decrementSpeed(double amount);
+    abstract protected void decrementSpeed(double amount);
 
 
 
