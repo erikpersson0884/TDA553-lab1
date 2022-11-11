@@ -116,8 +116,8 @@ public abstract class Car implements Movable {
     int dy = (int)direction.getY();
 
     // Calculate new coordinates
-    int newX = dx * (int)getCurrentSpeed();
-    int newY = dy * (int)getCurrentSpeed();
+    int newX = x + dx * (int)getCurrentSpeed();
+    int newY = y + dy * (int)getCurrentSpeed();
 
     // Set coordinates
     setX(newX);
