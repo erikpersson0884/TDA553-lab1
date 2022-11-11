@@ -1,5 +1,5 @@
 # Lab 1
-## TDA 553
+## TDA 553 Object-Oriented Programming and Design
 
 
 ![Github version](https://img.shields.io/badge/version-0.1.0-darkblue?style=flat-square)
