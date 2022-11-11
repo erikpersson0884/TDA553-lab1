@@ -1,18 +1,16 @@
 import java.awt.*;
 
 public class Saab95 extends Car{
-
+    
     private boolean turboOn;
 
     
     public Saab95(double enginePower, Color color, double x, double y){
         super("Saab95", enginePower, color, 2, x, y);
 	    turboOn = false;
-
-        // color = Color.red;
-        // enginePower = 125;
     }
     
+    // Methods
 
     public void setTurboOn(){
 	    turboOn = true;
@@ -32,19 +30,17 @@ public class Saab95 extends Car{
 
     @Override
     protected void incrementSpeed(double amount){
-        double newSpeed = getCurrentSpeed() + speedFactor() * amount;
-        boolean speedIsIncreasing = newSpeed >= getCurrentSpeed();
-        boolean isValidRange = (0 <= newSpeed || newSpeed >= getEnginePower());
+        double newSpeed = calcNewIncreasedSpeed(amount);
+        boolean validSpeed = newIncreasedSpeedIsValid(newSpeed);
 
-        if (speedIsIncreasing && isValidRange) setCurrentSpeed(newSpeed);
+        if (validSpeed) setCurrentSpeed(newSpeed);
     }
 
     @Override
     protected void decrementSpeed(double amount){
-        double newSpeed = getCurrentSpeed() - speedFactor() * amount;
-        boolean speedIsDecreasing = newSpeed <= getCurrentSpeed();
-        boolean isValidRange = (0 <= newSpeed || newSpeed <= getEnginePower());
+        double newSpeed = calcNewDecreasedSpeed(amount);
+        boolean validSpeed = newDecreasedSpeedIsValid(newSpeed);
 
-        if (speedIsDecreasing && isValidRange) setCurrentSpeed(newSpeed);
+        if (validSpeed) setCurrentSpeed(newSpeed);
     }
 }
