@@ -5,7 +5,7 @@ public class Test {
     
     public static void main(String[] args) {
         Saab95 saab1 = new Saab95();
-        saab1.gas(5);
+        saab1.gas(1);
         Volvo240 volvo1 = new Volvo240();
         for (int i = 0; i < 100; i++) {
 

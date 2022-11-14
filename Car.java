@@ -147,5 +147,33 @@ public void turnRight() {
     
 }
 
+public void gas(double amount) {
+
+    if (amount > 1) {
+        incrementSpeed(1);
+    }
+    else if (amount < 0) {
+        incrementSpeed(0);;
+    }
+    else {
+        incrementSpeed(amount);
+    }
+
+}
+
+public void brake(double amount) {
+
+    if (amount > 1) {
+        decrementSpeed(1);
+    }
+    else if (amount < 0) {
+        decrementSpeed(0);
+    }
+    else {
+        decrementSpeed(amount);
+    }
+
+}
+
 
 }
