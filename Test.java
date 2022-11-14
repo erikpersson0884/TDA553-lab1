@@ -1,30 +1,27 @@
 import static java.lang.System.out;
 import static java.lang.System.in;
+import  java.util.Scanner;
 
 public class Test {
     
     public static void main(String[] args) {
         Saab95 saab1 = new Saab95();
-        saab1.gas(1);
         Volvo240 volvo1 = new Volvo240();
-        for (int i = 0; i < 100; i++) {
+        saab1.setTurboOn();
+        Scanner sc = new Scanner(in);
 
-            out.print(saab1.getX());
-            out.println("  " + saab1.getY());
+        while (true) {
+                volvo1.gas(1);
+                saab1.gas(1);
+            out.println("Volvo speed: " + volvo1.getCurrentSpeed());
+            out.println("Saab speed: " + saab1.getCurrentSpeed());
 
-            if (i % 5 == 0) {
-                saab1.turnLeft();
+            if (volvo1.getCurrentSpeed() >= 100) {
+                break;
             }
-            else if (i % 10 == 0) {
-                saab1.turnRight();
-            }
 
-
-            saab1.move();
-            
+        }
 
         }
 
     }
-
-}

@@ -19,91 +19,86 @@ public abstract class Car implements Movable {
 
 
     // GETTERS AND SETTERS
-    public int getNrDoors() {
+    protected int getNrDoors() {
         return nrDoors;
     }
 
-    public void setNrDoors(int nrDoors) {
+    protected void setNrDoors(int nrDoors) {
         this.nrDoors = nrDoors;
     }
 
-    public double getEnginePower() {
+    protected double getEnginePower() {
         return enginePower;
     }
 
-    public void setEnginePower(double enginePower) {
+    protected void setEnginePower(double enginePower) {
         this.enginePower = enginePower;
     }
 
-    public double getCurrentSpeed() {
+    protected double getCurrentSpeed() {
         return currentSpeed;
     }
 
-    public void setCurrentSpeed(double currentSpeed) {
+    protected void setCurrentSpeed(double currentSpeed) {
         this.currentSpeed = currentSpeed;
     }
 
-    public Color getColor() {
+    protected Color getColor() {
         return color;
     }
 
-    public void setColor(Color color) {
+    protected void setColor(Color color) {
         this.color = color;
     }
 
-    public String getModelName() {
+    protected String getModelName() {
         return modelName;
     }
 
-    public void setModelName(String modelName) {
+    protected void setModelName(String modelName) {
         this.modelName = modelName;
     }
 
-    public int getX() {
+    protected int getX() {
         return x;
     }
 
-    public void setX(int x) {
+    protected void setX(int x) {
         this.x = x;
     }
 
-    public int getY() {
+    protected int getY() {
         return y;
     }
 
-    public void setY(int y) {
+    protected void setY(int y) {
         this.y = y;
     }
 
-    public int getDirectionIndex() {
+    protected int getDirectionIndex() {
         return directionIndex;
     }
 
-    public void setDirectionIndex(int directionIndex) {
+    protected void setDirectionIndex(int directionIndex) {
         this.directionIndex = directionIndex;
     }
 
-    public Point[] getDirectionArray() {
+    protected Point[] getDirectionArray() {
         return directions;
     }
 
     // METHODS
-    public void startEngine(){
+    protected void startEngine(){
 	    currentSpeed = 0.1;
     }
 
-    public void stopEngine(){
+    protected void stopEngine(){
 	    currentSpeed = 0;
     }
 
 
     // Abstract methods
-    abstract public double speedFactor();
-
-    abstract public void incrementSpeed(double amount);
-
-    abstract public void decrementSpeed(double amount);
-
+    abstract protected double speedFactor();
 
 
    // Implementation of Movable
@@ -147,33 +142,47 @@ public void turnRight() {
     
 }
 
-public void gas(double amount) {
+protected void gas(double amount) {
 
-    if (amount > 1) {
-        incrementSpeed(1);
-    }
-    else if (amount < 0) {
-        incrementSpeed(0);;
-    }
-    else {
-        incrementSpeed(amount);
-    }
+    try {
+        if (amount < 0 || amount > 1) {
+            throw new Exception("Gas amount out of limit!");
+        }
+        else {
+            incrementSpeed(amount);
+        }
 
-}
-
-public void brake(double amount) {
-
-    if (amount > 1) {
-        decrementSpeed(1);
     }
-    else if (amount < 0) {
-        decrementSpeed(0);
-    }
-    else {
-        decrementSpeed(amount);
+    catch (Exception e) {
+        System.out.println("Exception occured " + e);
     }
 
 }
 
+protected void brake(double amount) {
+
+    try {
+        if (amount < 0 || amount > 1) {
+            throw new Exception("Brake amount out of limit!");
+        }
+        else {
+            decrementSpeed(amount);
+        }
+
+    }
+    catch (Exception e) {
+        System.out.println("Exception occured " + e);
+    }
+
+}
+
+
+protected void incrementSpeed(double amount){
+    setCurrentSpeed(Math.min(getCurrentSpeed() + speedFactor() * amount,getEnginePower()));
+}
+
+protected void decrementSpeed(double amount){
+    setCurrentSpeed(Math.max(getCurrentSpeed() - speedFactor() * amount, 0));
+}
 
 }
