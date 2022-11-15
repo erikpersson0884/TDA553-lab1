@@ -7,15 +7,10 @@ public class Saab95 extends Car {
 
     // Constructor
     public Saab95() {
-        setNrDoors(2);
-        setColor(Color.red);
-        setEnginePower(125);
-        setModelName("Saab95");
-        setDirectionIndex(0);
+        
+        super(2, 125.0, Color.red, "saab95");
         turboOn = false;
-        stopEngine();
-        setX(0);
-        setY(0);
+
     }
 
     // Methods

@@ -1,4 +1,5 @@
 import java.awt.*;
+import javax.swing.*;
 
 public abstract class Car implements Movable {
 
@@ -10,7 +11,18 @@ public abstract class Car implements Movable {
     private String modelName; // The car model name
 
     // Coordinates
-    private int x, y;
+    private int x, y = 0;
+
+    // Constructor
+
+    public Car(int nrDoors, double enginePower , Color color, String modelName) {
+        this.nrDoors = nrDoors;
+        this.enginePower = enginePower;
+        this.currentSpeed = 0;
+        this.color = color;
+        this.modelName = modelName;
+        directionIndex = 0;
+    }
 
     // Moving
     private Point[] directions = new Point[] { new Point(0, 1), new Point(1, 0), new Point(0, -1), new Point(-1, 0) };
@@ -172,24 +184,6 @@ public abstract class Car implements Movable {
 
     protected void decrementSpeed(double amount) {
         setCurrentSpeed(Math.max(getCurrentSpeed() - speedFactor() * amount, 0));
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // PAINT GRAPHICS
-
-    public void renderCar(Graphics g) {
-        g.drawRect(x, y, 20, 40);
     }
 
 }
