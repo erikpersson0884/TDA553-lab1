@@ -105,18 +105,18 @@ public abstract class Car implements Movable {
 
    public void move() {
         
-    // Get direction as point (dx, dy)
-    Point direction = getDirectionArray()[getDirectionIndex()];
-    int dx = (int)direction.getX();
-    int dy = (int)direction.getY();
+        // Get direction as point (dx, dy)
+        Point direction = getDirectionArray()[getDirectionIndex()];
+        int dx = (int)direction.getX();
+        int dy = (int)direction.getY();
 
-    // Calculate new coordinates
-    int newX = x + dx * (int)getCurrentSpeed();
-    int newY = y + dy * (int)getCurrentSpeed();
+        // Calculate new coordinates
+        int newX = x + dx * (int)getCurrentSpeed();
+        int newY = y + dy * (int)getCurrentSpeed();
 
-    // Set coordinates
-    setX(newX);
-    setY(newY);
+        // Set coordinates
+        setX(newX);
+        setY(newY);
 
 }
 
