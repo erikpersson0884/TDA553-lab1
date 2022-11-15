@@ -13,10 +13,8 @@ public abstract class Car implements Movable {
     private int x, y;
 
     // Moving
-    private Point[] directions = new Point[]{new Point(0,1), new Point(1,0), new Point(0,-1), new Point(-1,0)};
+    private Point[] directions = new Point[] { new Point(0, 1), new Point(1, 0), new Point(0, -1), new Point(-1, 0) };
     private int directionIndex;
-    
-
 
     // GETTERS AND SETTERS
     protected int getNrDoors() {
@@ -88,101 +86,110 @@ public abstract class Car implements Movable {
     }
 
     // METHODS
-    protected void startEngine(){
-	    currentSpeed = 0.1;
+    protected void startEngine() {
+        currentSpeed = 0.1;
     }
 
-    protected void stopEngine(){
-	    currentSpeed = 0;
+    protected void stopEngine() {
+        currentSpeed = 0;
     }
-
 
     // Abstract methods
     abstract protected double speedFactor();
 
+    // Implementation of Movable
 
-   // Implementation of Movable
+    public void move() {
 
-   public void move() {
-        
         // Get direction as point (dx, dy)
         Point direction = getDirectionArray()[getDirectionIndex()];
-        int dx = (int)direction.getX();
-        int dy = (int)direction.getY();
+        int dx = (int) direction.getX();
+        int dy = (int) direction.getY();
 
         // Calculate new coordinates
-        int newX = x + dx * (int)getCurrentSpeed();
-        int newY = y + dy * (int)getCurrentSpeed();
+        int newX = x + dx * (int) getCurrentSpeed();
+        int newY = y + dy * (int) getCurrentSpeed();
 
         // Set coordinates
         setX(newX);
         setY(newY);
 
-}
-
-public void turnLeft() {
-
-    if (getDirectionIndex() == 0) {
-        setDirectionIndex(getDirectionArray().length - 1);
-    }
-    else {
-        setDirectionIndex(getDirectionIndex() - 1);
     }
 
-}
+    public void turnLeft() {
 
-public void turnRight() {
-
-    if (getDirectionIndex() == getDirectionArray().length - 1) {
-        setDirectionIndex(0);
-    }
-    else {
-        setDirectionIndex(getDirectionIndex() + 1);
-    }
-    
-}
-
-protected void gas(double amount) {
-
-    try {
-        if (amount < 0 || amount > 1) {
-            throw new Exception("Gas amount out of limit!");
-        }
-        else {
-            incrementSpeed(amount);
+        if (getDirectionIndex() == 0) {
+            setDirectionIndex(getDirectionArray().length - 1);
+        } else {
+            setDirectionIndex(getDirectionIndex() - 1);
         }
 
     }
-    catch (Exception e) {
-        System.out.println("Exception occured " + e);
-    }
 
-}
+    public void turnRight() {
 
-protected void brake(double amount) {
-
-    try {
-        if (amount < 0 || amount > 1) {
-            throw new Exception("Brake amount out of limit!");
-        }
-        else {
-            decrementSpeed(amount);
+        if (getDirectionIndex() == getDirectionArray().length - 1) {
+            setDirectionIndex(0);
+        } else {
+            setDirectionIndex(getDirectionIndex() + 1);
         }
 
     }
-    catch (Exception e) {
-        System.out.println("Exception occured " + e);
+
+    protected void gas(double amount) {
+
+        try {
+            if (amount < 0 || amount > 1) {
+                throw new Exception("Gas amount out of limit!");
+            } else {
+                incrementSpeed(amount);
+            }
+
+        } catch (Exception e) {
+            System.out.println("Exception occured " + e);
+        }
+
     }
 
-}
+    protected void brake(double amount) {
+
+        try {
+            if (amount < 0 || amount > 1) {
+                throw new Exception("Brake amount out of limit!");
+            } else {
+                decrementSpeed(amount);
+            }
+
+        } catch (Exception e) {
+            System.out.println("Exception occured " + e);
+        }
+
+    }
+
+    protected void incrementSpeed(double amount) {
+        setCurrentSpeed(Math.min(getCurrentSpeed() + speedFactor() * amount, getEnginePower()));
+    }
+
+    protected void decrementSpeed(double amount) {
+        setCurrentSpeed(Math.max(getCurrentSpeed() - speedFactor() * amount, 0));
+    }
 
 
-protected void incrementSpeed(double amount){
-    setCurrentSpeed(Math.min(getCurrentSpeed() + speedFactor() * amount,getEnginePower()));
-}
 
-protected void decrementSpeed(double amount){
-    setCurrentSpeed(Math.max(getCurrentSpeed() - speedFactor() * amount, 0));
-}
+
+
+
+
+
+
+
+
+
+
+    // PAINT GRAPHICS
+
+    public void renderCar(Graphics g) {
+        g.drawRect(x, y, 20, 40);
+    }
 
 }

@@ -1,12 +1,12 @@
 import java.awt.*;
 
-public class Saab95 extends Car{
+public class Saab95 extends Car {
 
     // Model attributes
     private boolean turboOn;
 
     // Constructor
-    public Saab95(){
+    public Saab95() {
         setNrDoors(2);
         setColor(Color.red);
         setEnginePower(125);
@@ -18,22 +18,20 @@ public class Saab95 extends Car{
         setY(0);
     }
 
-
     // Methods
-    public void setTurboOn(){
-	    turboOn = true;
+    public void setTurboOn() {
+        turboOn = true;
     }
 
-    public void setTurboOff(){
-	    turboOn = false;
+    public void setTurboOff() {
+        turboOn = false;
     }
-    
-    protected double speedFactor(){
+
+    protected double speedFactor() {
         double turbo = 1;
-        if(turboOn) turbo = 1.3;
+        if (turboOn)
+            turbo = 1.3;
         return getEnginePower() * 0.01 * turbo;
     }
-
-
 
 }
