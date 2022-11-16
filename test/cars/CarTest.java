@@ -1,4 +1,4 @@
-package Labb1;
+package cars;
 
 
 import static org.junit.Assert.assertEquals;
