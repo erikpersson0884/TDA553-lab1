@@ -1,7 +1,0 @@
-{
-    "java.project.sourcePaths": [
-        "test/cars",
-        "src/cars",
-        "src"
-    ]
-}
