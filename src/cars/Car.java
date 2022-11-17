@@ -1,6 +1,5 @@
 package cars;
 import java.awt.*;
-import javax.swing.*;
 
 public abstract class Car implements Movable {
 
@@ -31,6 +30,11 @@ public abstract class Car implements Movable {
 
 
     // GETTERS AND SETTERS
+
+    protected Point getCoordinate() {
+        return new Point(x,y);
+    }
+
     protected int getNrDoors() {
         return nrDoors;
     }
@@ -96,7 +100,11 @@ public abstract class Car implements Movable {
     }
 
     protected Point[] getDirectionArray() {
-        return directions;
+        return directions.clone();
+    }
+
+    protected Point getDirection() {
+        return directions[getDirectionIndex()];
     }
 
     // METHODS
@@ -152,31 +160,21 @@ public abstract class Car implements Movable {
 
     protected void gas(double amount) {
 
-        try {
             if (amount < 0 || amount > 1) {
-                throw new Exception("Gas amount out of limit!");
+                throw new IllegalArgumentException();
             } else {
                 incrementSpeed(amount);
             }
-
-        } catch (Exception e) {
-            System.out.println("Exception occured " + e);
-        }
 
     }
 
     protected void brake(double amount) {
 
-        try {
             if (amount < 0 || amount > 1) {
-                throw new Exception("Brake amount out of limit!");
+                throw new IllegalArgumentException();
             } else {
                 decrementSpeed(amount);
             }
-
-        } catch (Exception e) {
-            System.out.println("Exception occured " + e);
-        }
 
     }
 
