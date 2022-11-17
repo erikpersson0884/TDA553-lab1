@@ -1,6 +1,7 @@
 package Cars;
 import java.awt.*;
 import java.lang.Math;
+import java.math.BigDecimal;
 
 public abstract class Car extends Positionable implements Movable{
     
@@ -66,7 +67,7 @@ public abstract class Car extends Positionable implements Movable{
         if (0 <= amount && amount <= 1){
             incrementSpeed(amount);
         } else {
-            throw new IllegalArgumentException("Only values [0-1] are accepted.");
+            throw new IllegalArgumentException("Only values in range [0-1] are accepted.");
         }
     }
     
@@ -75,7 +76,7 @@ public abstract class Car extends Positionable implements Movable{
         if (0 <= amount && amount <= 1){
             decrementSpeed(amount);
         } else {
-            throw new IllegalArgumentException("Only values [0-1] are accepted.");
+            throw new IllegalArgumentException("Only values in range [0-1] are accepted.");
         }
     }
     
@@ -83,8 +84,14 @@ public abstract class Car extends Positionable implements Movable{
     @Override
     public void move() {
         // x and y gets set based on current speed and coordinate, but also the angle according to the current direction
-        setX(getX() + Math.cos(Math.toRadians(getDirection())) * getCurrentSpeed());    
-        setY(getY() + Math.sin(Math.toRadians(getDirection())) * getCurrentSpeed());
+        double changeInX = Math.cos(Math.toRadians(getDirection())) * getCurrentSpeed();
+        double changeInY = Math.sin(Math.toRadians(getDirection())) * getCurrentSpeed();
+
+        BigDecimal newX = getX().add(BigDecimal.valueOf(changeInX));
+        BigDecimal newY = getY().add(BigDecimal.valueOf(changeInY));
+        
+        setX(newX);    
+        setY(newY);
     }
     
     @Override
