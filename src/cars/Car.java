@@ -14,6 +14,10 @@ public abstract class Car implements Movable {
     // Coordinates
     private int x, y = 0;
 
+    // Moving
+    private Point[] directions = new Point[] { new Point(0, 1), new Point(1, 0), new Point(0, -1), new Point(-1, 0) };
+    private int directionIndex;
+
     // Constructor
 
     public Car(int nrDoors, double enginePower , Color color, String modelName) {
@@ -25,9 +29,6 @@ public abstract class Car implements Movable {
         directionIndex = 0;
     }
 
-    // Moving
-    private Point[] directions = new Point[] { new Point(0, 1), new Point(1, 0), new Point(0, -1), new Point(-1, 0) };
-    private int directionIndex;
 
     // GETTERS AND SETTERS
     protected int getNrDoors() {
