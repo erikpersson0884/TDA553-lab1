@@ -1,0 +1,41 @@
+
+1. Explain how you chose the inheritance hierarchy in Task 1, making reference to the Open-Closed Principle.
+
+
+To start things off we wanted to make the properties of both vehicles regarding movement not based on vehicle functionality,
+such as gas, etc, so we created an interface called Movable. This would be the highest point of method superiority in our project,
+and it allows expanding on more types that would each include the properties of movement, but that would not fall in the car category.
+And according to the Open-Closed principle, we made sure that the only methods in our Movable interface would be ones that wouldn't restrict an eventual
+expansion of the project, which boils down to three methods: move, turnLeft and turnRight. As our interface methods are not yet implemented,
+the interface will create good-willed code duplication.
+
+Our next grade in the inheritance “tree” is going to be a class called Car, which gathers the common functionality between the two types of cars,
+Saab95 and Volvo240. This is logically placed between Movable and the both types of cars as all cars are movable, and both Saab95 and Volvo240
+are types of cars with similarities tied to their common type. The class Car is constructed in a way that would make further development of more
+subclasses to Car, being other models, very easy, as the properties of the superclass Car is shared in all models.
+
+Our work on Car has also been done with the ‘O-C’ principle in mind, as we made sure to leave the methods and attributes in Car well defined in order
+to never have the need to change it in order to expand the project with more car models. 
+
+Lastly we have the two car models, Saab95 and Volvo240, which are both types of the class Car, and therefore also implements the movable properties
+defined in Car. Saab95 and Volvo240 have some minor differences in their functionality inherited from Car, such as the speedFactor,
+which is a shared property inherited from Car, and is uniquely defined in each class according to each model's suggested implementation. 
+
+In an effort to compliantly adhere to the ‘O-C’ principle, we made sure to make all attributes private, and only reachable through protected getters
+and setters. Furthermore, the rest of the methods are mostly public, except for a few in which we feel are unlikely to be interesting to reach from
+beyond the scope of where they are used in our other methods, such as the methods surrounding our point array used for handling directions.
+
+
+2.    Explain how you implemented each of the sanity checks in Task 4.
+
+
+To begin explaining the sanity checks in our code we will start with the first one created, the sanity checks that make our methods gas() and brake() only
+accept double values in the span of [0,1]. In its simplicity, we check if the inserted value is within the limits of [0,1], if it is, we proceed to change 
+the speed accordingly, if the inserted value breaks the limit, we throw an exception, signaling an illegal argument.
+
+This also covers the cases where gas would result in decreasing the speed (having an inserted value <0), or where the brake method would result
+in increasing speed (having an inserted value <0).
+In order to not have problems with our currentSpeed attribute, like for instance, getting negative speed when decrementing speed we create a small line
+of code that assures speed won't get below 0, and won't get higher than enginePower by using the math.min and math.max functions to make sure our
+program choose speed = 0 over a negative inserted value and speed = enginePower over a inserted value higher than enginePower.
+

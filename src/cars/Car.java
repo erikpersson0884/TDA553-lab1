@@ -1,26 +1,28 @@
 package cars;
+
 import java.awt.*;
 
 public abstract class Car implements Movable {
 
-    // Shared Attributes
+    ////// Shared Attributes //////
+
     private int nrDoors; // Number of doors on the car
     private double enginePower; // Engine power of the car
     private double currentSpeed; // The current speed of the car
     private Color color; // Color of the car
     private String modelName; // The car model name
 
-    // Coordinates
-    private int x, y = 0;
 
-    // Moving
+    private int x, y = 0; // Coordinates
+
+    // Directions presented as Points
     private Point[] directions = new Point[] { new Point(0, 1), new Point(1, 0), new Point(0, -1), new Point(-1, 0) };
 
-    private int directionIndex;
+    private int directionIndex; // Active index in directions.
 
+    
     // Constructor
-
-    public Car(int nrDoors, double enginePower , Color color, String modelName) {
+    public Car(int nrDoors, double enginePower, Color color, String modelName) {
         this.nrDoors = nrDoors;
         this.enginePower = enginePower;
         this.currentSpeed = 0;
@@ -29,66 +31,65 @@ public abstract class Car implements Movable {
         directionIndex = 0;
     }
 
-    
-    // GETTERS AND SETTERS
+    ////////////// GETTERS AND SETTERS ////////////////////
 
-    protected Point getCoordinate() {
-        return new Point(x,y);
+    public Point getCoordinate() {
+        return new Point(x, y);
     }
 
-    protected int getNrDoors() {
+    public int getNrDoors() {
         return nrDoors;
     }
 
-    protected void setNrDoors(int nrDoors) {
+    public void setNrDoors(int nrDoors) {
         this.nrDoors = nrDoors;
     }
 
-    protected double getEnginePower() {
+    public double getEnginePower() {
         return enginePower;
     }
 
-    protected void setEnginePower(double enginePower) {
+    public void setEnginePower(double enginePower) {
         this.enginePower = enginePower;
     }
 
-    protected double getCurrentSpeed() {
+    public double getCurrentSpeed() {
         return currentSpeed;
     }
 
-    protected void setCurrentSpeed(double currentSpeed) {
+    private void setCurrentSpeed(double currentSpeed) {
         this.currentSpeed = currentSpeed;
     }
 
-    protected Color getColor() {
+    public Color getColor() {
         return color;
     }
 
-    protected void setColor(Color color) {
+    public void setColor(Color color) {
         this.color = color;
     }
 
-    protected String getModelName() {
+    public String getModelName() {
         return modelName;
     }
 
-    protected void setModelName(String modelName) {
+    public void setModelName(String modelName) {
         this.modelName = modelName;
     }
 
-    protected int getX() {
+    public int getX() {
         return x;
     }
 
-    protected void setX(int x) {
+    public void setX(int x) {
         this.x = x;
     }
 
-    protected int getY() {
+    public int getY() {
         return y;
     }
 
-    protected void setY(int y) {
+    public void setY(int y) {
         this.y = y;
     }
 
@@ -108,12 +109,15 @@ public abstract class Car implements Movable {
         return directions[getDirectionIndex()];
     }
 
-    // METHODS
-    protected void startEngine() {
+
+    //////////// METHODS ///////////////
+
+
+    public void startEngine() {
         currentSpeed = 0.1;
     }
 
-    protected void stopEngine() {
+    public void stopEngine() {
         currentSpeed = 0;
     }
 
@@ -139,6 +143,7 @@ public abstract class Car implements Movable {
 
     }
 
+    // Change active index in Direction Array to (current index - 1).
     public void turnLeft() {
 
         if (getDirectionIndex() == 0) {
@@ -149,6 +154,7 @@ public abstract class Car implements Movable {
 
     }
 
+    // Change active index in Direction Array to (current index + 1).
     public void turnRight() {
 
         if (getDirectionIndex() == getDirectionArray().length - 1) {
@@ -159,30 +165,34 @@ public abstract class Car implements Movable {
 
     }
 
-    protected void gas(double amount) {
+    // Gas method. But check that the amount is between 0-1. If not throw exception.
+    public void gas(double amount) {
 
-            if (amount < 0 || amount > 1) {
-                throw new IllegalArgumentException();
-            } else {
-                incrementSpeed(amount);
-            }
-
-    }
-
-    protected void brake(double amount) {
-
-            if (amount < 0 || amount > 1) {
-                throw new IllegalArgumentException();
-            } else {
-                decrementSpeed(amount);
-            }
+        if (amount < 0 || amount > 1) {
+            throw new IllegalArgumentException();
+        } else {
+            incrementSpeed(amount);
+        }
 
     }
 
+    // Brake method. But check that amount is between 0-1. If not throw exception.
+    public void brake(double amount) {
+
+        if (amount < 0 || amount > 1) {
+            throw new IllegalArgumentException();
+        } else {
+            decrementSpeed(amount);
+        }
+
+    }
+
+    // Increase speed but make sure it never goes above Engine Power.
     protected void incrementSpeed(double amount) {
         setCurrentSpeed(Math.min(getCurrentSpeed() + speedFactor() * amount, getEnginePower()));
     }
 
+    // Decrease speed but make sure it never goes below 0.
     protected void decrementSpeed(double amount) {
         setCurrentSpeed(Math.max(getCurrentSpeed() - speedFactor() * amount, 0));
     }

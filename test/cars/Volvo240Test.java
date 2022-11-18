@@ -14,8 +14,8 @@ public class Volvo240Test {
     public void gas_should_only_accept_value_between_one_and_zero() {
 
         Volvo240 volvo = new Volvo240();
-        assertThrows(IllegalArgumentException.class, () -> volvo.gas(-0.1));
-        assertThrows(IllegalArgumentException.class, () -> volvo.gas(1.1));
+        assertThrows(IllegalArgumentException.class, () -> volvo.gas(-0.0001));
+        assertThrows(IllegalArgumentException.class, () -> volvo.gas(1.0001));
 
     }
 
@@ -80,7 +80,7 @@ public class Volvo240Test {
     public void stop_engine_should_make_current_speed_zero() {
         
         Volvo240 volvo = new Volvo240();
-        volvo.setCurrentSpeed(100);
+        volvo.gas(1);
         volvo.stopEngine();
         assertEquals(0, volvo.getCurrentSpeed(), 0);
         
