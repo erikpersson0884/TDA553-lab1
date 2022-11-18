@@ -15,6 +15,7 @@ public abstract class Car implements Movable {
 
     // Moving
     private Point[] directions = new Point[] { new Point(0, 1), new Point(1, 0), new Point(0, -1), new Point(-1, 0) };
+
     private int directionIndex;
 
     // Constructor
@@ -28,7 +29,7 @@ public abstract class Car implements Movable {
         directionIndex = 0;
     }
 
-
+    
     // GETTERS AND SETTERS
 
     protected Point getCoordinate() {
