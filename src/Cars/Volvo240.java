@@ -1,34 +1,60 @@
 package Cars;
+
 import java.awt.*;
+import java.math.BigDecimal;
 
-public class Volvo240 extends Car{
+public class Volvo240 implements ICar, Movable, IPositonable {
 
-    private final static double trimFactor = 1.25;
+    private TrimCar trimCar;
 
     // Constructor
-    public Volvo240(double enginePower, Color color, double x, double y){
-        super("Volvo240", enginePower, color, 4, x, y);
-    }
-    
-    // Methods
-    @Override
-    protected double speedFactor(){
-        return getEnginePower() * 0.01 * trimFactor;
-    }
-    
-    @Override
-    protected void incrementSpeed(double amount){
-        double newSpeed = calcNewIncreasedSpeed(amount);
-        boolean validSpeed = newIncreasedSpeedIsValid(newSpeed);
-
-	    if (validSpeed) setCurrentSpeed(Math.min(newSpeed, getEnginePower()));
+    public Volvo240(double enginePower, Color color, double x, double y) {
+        trimCar = new TrimCar("Volvo240", enginePower, color, 4, x, y);
     }
 
     @Override
-    protected void decrementSpeed(double amount){
-        double newSpeed = calcNewDecreasedSpeed(amount);
-        boolean validSpeed = newDecreasedSpeedIsValid(newSpeed);
-
-        if (validSpeed) setCurrentSpeed(Math.max(newSpeed, 0));
+    public void move() {
+        trimCar.move();
     }
+
+    @Override
+    public void turnLeft() {
+        trimCar.turnLeft();
+    }
+
+    @Override
+    public void turnRight() {
+        trimCar.turnRight();
+    }
+
+    @Override
+    public void gas(double amount) {
+        trimCar.gas(amount);
+    }
+
+    @Override
+    public void brake(double amount) {
+        trimCar.brake(amount);
+    }
+
+    @Override
+    public double getEnginePower() {
+        return trimCar.getEnginePower();
+    }
+
+    @Override
+    public double getCurrentSpeed() {
+        return trimCar.getCurrentSpeed();
+    }
+
+    @Override
+    public BigDecimal getX() {
+        return trimCar.getX();
+    }
+
+    @Override
+    public BigDecimal getY() {
+        return trimCar.getY();
+    }
+
 }
