@@ -1,8 +1,10 @@
 1. Explain how you chose the inheritance hierarchy in Task 1, making reference to the Open-Closed Principle.
 
-We chose to have a Car superclass. Then the subclasses, Volvo240 and Saab95 inherits from Car as they share similar
+In the original version we chose to have a Car superclass. Then the subclasses, Volvo240 and Saab95 inherits from Car as they share similar
 attributes and methods. We also added an abstract Positionable class which Car inherits from since more than just cars could have
-coordinates and a direction.
+coordinates and a direction. 
+However after the feedback we changed to instead have multiple interfaces which Saab95 and Volvo240 implements
+and delegates either a trimcar or a turbocar class in order to do this. In this design trimcar and turbocar is subclasses of the Car class. 
 
 Since the methods used to change the speed varied between the two classes, we decided to make them as abstract methods which we
 then override in each subclass. 

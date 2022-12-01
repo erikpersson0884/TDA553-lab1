@@ -2,7 +2,7 @@ package Cars;
 
 import java.math.BigDecimal;
 
-public abstract class Positionable {
+public abstract class Positionable implements IPositonable {
     // Instance variables
     private BigDecimal x;
     private BigDecimal y;
@@ -23,7 +23,7 @@ public abstract class Positionable {
         return x;
     }
 
-    public void setX(BigDecimal x) {
+    protected void setX(BigDecimal x) {
         this.x = x;
     }
 
@@ -31,7 +31,7 @@ public abstract class Positionable {
         return y;
     }
 
-    public void setY(BigDecimal y) {
+    protected void setY(BigDecimal y) {
         this.y = y;
     }
 

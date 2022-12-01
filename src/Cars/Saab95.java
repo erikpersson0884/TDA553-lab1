@@ -1,48 +1,57 @@
 package Cars;
+
 import java.awt.*;
+import java.math.BigDecimal;
 
+public class Saab95 implements ICar, Movable, IPositonable {
+    private TurboCar turboCar;
 
-public class Saab95 extends Car{
-    
-    private boolean turboOn;
-
-    
-    public Saab95(double enginePower, Color color, double x, double y){
-        super("Saab95", enginePower, color, 2, x, y);
-	    turboOn = false;
-    }
-    
-    // Methods
-
-    public void setTurboOn(){
-	    turboOn = true;
-    }
-
-    public void setTurboOff(){
-	    turboOn = false;
-    }
-    
-    @Override
-    protected double speedFactor(){
-        double turbo = 1;
-        if(turboOn) turbo = 1.3;
-        
-        return getEnginePower() * 0.01 * turbo;
+    public Saab95(double enginePower, Color color, double x, double y) {
+        this.turboCar = new TurboCar("Saab95", enginePower, color, 2, x, y);
     }
 
     @Override
-    protected void incrementSpeed(double amount){
-        double newSpeed = calcNewIncreasedSpeed(amount);
-        boolean validSpeed = newIncreasedSpeedIsValid(newSpeed);
-
-        if (validSpeed) setCurrentSpeed(newSpeed);
+    public void move() {
+        turboCar.move();
     }
 
     @Override
-    protected void decrementSpeed(double amount){
-        double newSpeed = calcNewDecreasedSpeed(amount);
-        boolean validSpeed = newDecreasedSpeedIsValid(newSpeed);
+    public void turnLeft() {
+        turboCar.turnLeft();
+    }
 
-        if (validSpeed) setCurrentSpeed(newSpeed);
+    @Override
+    public void turnRight() {
+        turboCar.turnRight();
+    }
+
+    @Override
+    public void gas(double amount) {
+        turboCar.gas(amount);
+    }
+
+    @Override
+    public void brake(double amount) {
+        turboCar.brake(amount);
+    }
+
+    @Override
+    public double getEnginePower() {
+        return turboCar.getEnginePower();
+    }
+
+    @Override
+    public double getCurrentSpeed() {
+        return turboCar.getCurrentSpeed();
+    }
+
+    @Override
+    public BigDecimal getX() {
+        return turboCar.getX();
+    }
+
+    @Override
+    public BigDecimal getY() {
+        return turboCar.getY();
     }
 }
